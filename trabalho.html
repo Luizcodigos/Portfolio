@@ -83,21 +83,31 @@
         u.senha === senhaInput.value.trim()
       );
 
-      if (!loginValido) { // Se não for válido
+      if (!loginValido) { 
+        
         mensagem.style.color = "red";
         mensagem.innerText = "Usuário ou senha incorretos.";
+        
+        
         usuarioInput.value = "";
         senhaInput.value = "";
-        usuarioInput.focus(); // Volta o cursor para o campo de usuário
-        return;
-      }
+        
+       
+        usuarioInput.focus();
 
-      // Se for válido
-      mensagem.style.color = "green";
-      mensagem.innerText = `Parabéns, Login bem-sucedido! Bem-vindo!`;
+        
+        setTimeout(() => {
+          mensagem.innerText = "";  
+        }, 4000); 
+      } else {
+        
+        mensagem.style.color = "green";
+        mensagem.innerText = "Parabéns, Login bem-sucedido! Bem-vindo!";
+      }
     }
   </script>
 
 </body>
 </html>
+
 
