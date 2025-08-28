@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnocursos - Cursos de Tecnologia</title>
+    <script>
+        function CarregarCurso(curso) {
+            const detalhes = document.getElementById('detalhes');
+            detalhes.innerHTML = `<p>Você selecionou o curso: <strong>${curso}</strong>.</p>`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Tecnocursos - Cursos de Tecnologia</h1>
+    </header>
+
+    <main>
+        <h2>Escolha um curso para saber mais:</h2>
+        <ul>
+            <li onclick="CarregarCurso('JavaScript')">Curso de JavaScript</li>
+            <li onclick="CarregarCurso('Python')">Curso de Python</li>
+            <li onclick="CarregarCurso('HTML e CSS')">Curso de HTML e CSS</li>
+            <li onclick="CarregarCurso('Banco de Dados')">Curso de Banco de Dados</li>
+        </ul>
+
+        <div id="detalhes"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tecnocursos. Todos os direitos reservados.</p>
+        <p>Telefone: (31) 98874-9912</p>
+        <p><a href="file:///C:/Users/Aluno/Desktop/atv%20html/atv.html">Voltar para a página inicial</a></p>
+    </footer>
+</body>
+</html>
