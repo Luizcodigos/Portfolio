@@ -23,6 +23,21 @@
 
     h3 {
       text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .destaque-js {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #6a0dad;
+      margin-bottom: 15px;
+    }
+
+    .curso-info {
+      text-align: center;
+      font-size: 14px;
+      color: #4b0082;
       margin-bottom: 20px;
     }
 
@@ -60,6 +75,17 @@
 
   <div class="login-container">
     <h3>Login</h3>
+
+    
+    <div class="destaque-js"> Curso De JavaScript</div>
+
+    <
+    <div class="curso-info">
+      🚀 Aprenda JavaScript de forma simples e divertida!<br>
+      Curso gratuito para iniciantes!
+    </div>
+
+   
     <input type="text" id="username" placeholder="Digite o nome de Usuário">
     <input type="password" id="password" placeholder="Digite a Senha">
     <button onclick="verificarLogin()">Entrar</button>
@@ -68,9 +94,9 @@
 
   <script>
     const usuarios = [
-      { usuario: "Luiz Henrique", senha: "Luiz123" },
-      { usuario: "João Batista", senha: "senha456" },
-      { usuario: "Maria", senha: "6969Maria" }
+      { usuario: "Luiz", senha: "Luiz123" },
+      { usuario: "Pedro", senha: "Pedro123" },
+      { usuario: "Maria", senha: "Maria123" }
     ];
 
     function verificarLogin() {
@@ -84,33 +110,30 @@
       );
 
       if (!loginValido) { 
-        
         mensagem.style.color = "red";
         mensagem.innerText = "Usuário ou senha incorretos.";
-        
-        
+
         usuarioInput.value = "";
         senhaInput.value = "";
-        
-       
         usuarioInput.focus();
 
-        
         setTimeout(() => {
           mensagem.innerText = "";  
         }, 4000); 
       } else {
-        
         mensagem.style.color = "green";
         mensagem.innerText = "Redirecionando...";
-        
-        setTimeout(()=>{window.location.href = "file:///C:/Users/aluno/Desktop/atividade/pagina2.html";},2000);
+
+        setTimeout(() => {
+          window.location.href = "file:///C:/Users/aluno/Desktop/atividade/pagina2.html";
+        }, 2000);
       }
     }
   </script>
 
 </body>
 </html>
+
 
 
 
