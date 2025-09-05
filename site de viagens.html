@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mais Viagens</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      background: #00aaff;
+      color: white;
+      border-radius: 10px;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 30px auto;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    li {
+      background-color: #fff;
+      border: 2px solid #00aaff;
+      padding: 15px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    li:hover {
+      background-color: #00aaff;
+      color: white;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-top: 30px;
+      display: none;
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      color: #0077cc;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌎 Mais Viagens</h1>
+    <p>Escolha seu próximo destino clicando abaixo!</p>
+  </header>
+
+  <main>
+    <ul id="listaDestinos"></ul>
+
+    <section id="infoDestino" class="card">
+      <h2 id="nomeDestino"></h2>
+      <p id="descricaoDestino"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Mais Viagens - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const destinos = {
+      salvador: {
+        nome: "Salvador",
+        descricao: `Salvador é uma das cidades mais vibrantes do Brasil, conhecida por sua forte influência afro-brasileira. 
+        É um destino repleto de história, com o centro histórico do Pelourinho, igrejas barrocas e festas tradicionais como o Carnaval e a Lavagem do Bonfim. 
+        Além disso, oferece praias belíssimas, culinária típica como o acarajé e uma energia cultural única no país.`
+      },
+      santiago: {
+        nome: "Santiago",
+        descricao: `Santiago, capital do Chile, é uma cidade moderna rodeada pela Cordilheira dos Andes. 
+        É perfeita para quem busca uma mistura de urbanismo e natureza, com vinícolas próximas, estações de esqui nos arredores e uma rica cena artística e gastronômica. 
+        Museus, mercados e bairros boêmios como Bellavista tornam Santiago um destino encantador e acessível o ano inteiro.`
+      },
+      buenos_aires: {
+        nome: "Buenos Aires",
+        descricao: `Buenos Aires é a capital da Argentina e uma cidade apaixonante, que combina charme europeu com a alma sul-americana. 
+        Famosa pelo tango, pela arquitetura imponente, cafés históricos e vida noturna intensa. 
+        Lugares como a Recoleta, San Telmo e Caminito são imperdíveis, além das deliciosas parrillas argentinas espalhadas por toda a cidade.`
+      },
+      natal: {
+        nome: "Natal",
+        descricao: `Natal, capital do Rio Grande do Norte, é um verdadeiro paraíso tropical no nordeste brasileiro. 
+        Conhecida como a "Cidade do Sol", oferece paisagens incríveis com dunas, falésias e praias de águas mornas e cristalinas. 
+        Destaques incluem a Praia de Ponta Negra, o Morro do Careca, os passeios de buggy pelas dunas de Genipabu e o famoso Forte dos Reis Magos.`
+      }
+    };
+
+    function criarLi(nome, chave) {
+      const li = document.createElement('li');
+      li.textContent = nome;
+      li.addEventListener('click', () => mostrarDestino(chave));
+      return li;
+    }
+
+    function montarLista() {
+      const lista = document.getElementById('listaDestinos');
+      for (const chave in destinos) {
+        const destino = destinos[chave];
+        lista.appendChild(criarLi(destino.nome, chave));
+      }
+    }
+
+    async function mostrarDestino(chave) {
+      const dados = destinos[chave];
+
+      // Simular carregamento com delay
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      document.getElementById('nomeDestino').textContent = dados.nome;
+      document.getElementById('descricaoDestino').textContent = dados.descricao;
+
+      document.getElementById('infoDestino').style.display = 'block';
+    }
+
+    // Inicializa a lista ao carregar
+    montarLista();
+  </script>
+</body>
+</html>
