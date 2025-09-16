@@ -6,64 +6,73 @@
     <title>Mudar de cor de acordo com o Horário</title>
 
     <style>
-        body{
-            transition:background-color 3s;
+        body {
+            transition: background-color 3s;
             font-family: Arial, Helvetica, sans-serif;
             color: black;
             text-align: center;
             padding-top: 100px;
         }
-        button{
+        button {
             padding: 20px;
             font-family: Arial, Helvetica, sans-serif;
             margin-top: 20px;
             cursor: pointer;
-            border:none;
+            border: none;
             border-radius: 10px;
         }
-        @media(max-width:800px){
-            body{font-size: 40px; padding-top: 50px;}
-            button{font-size: 20px; padding: 20px;}
+        @media (max-width: 800px) {
+            body { font-size: 40px; padding-top: 50px; }
+            button { font-size: 20px; padding: 20px; }
         }
     </style>
-
 </head>
 <body>
     <h1 id="titulo">bem vindo(a)!</h1>
     <p>Clique no botão para mudar a cor da página de acordo com o horário!</p>
     <button onclick="trocar()">Mudar cor</button>
 
+    <!-- Adicionados os elementos para mostrar hora e data -->
+    <p id="hora"></p>
+    <p id="data"></p>
+
     <script>
         function trocar() {
-            const hora = new Date().getHours();
+            const agora = new Date();
+            const hora = agora.getHours();
             let cor;
             let mensagem;
 
-            if (hora >= 6 && hora < 12){
+            if (hora >= 6 && hora < 12) {
                 cor = "#ffd700";
                 mensagem = "Bom dia!";
-            }
-            else if (hora >= 12 && hora < 18){
+            } else if (hora >= 12 && hora < 18) {
                 cor = "#ff8c00";
                 mensagem = "Boa tarde!";
-            }
-            else if (hora >= 18 && hora < 23){
+            } else if (hora >= 18 && hora < 23) {
                 cor = "#1e900f";
                 mensagem = "Boa noite!";
-
-            }
-            else {
-                cor ="2f4f4f";
+            } else {
+                cor = "#2f4f4f";
                 mensagem = "Hora de descansar!";
-
             }
+
             document.body.style.backgroundColor = cor;
-            document.getElementbyid("titulo").innerHTML = mensagem;
+            document.getElementById("titulo").innerHTML = mensagem;
 
+            // Parte adicionada da imagem
+            const minutos = agora.getMinutes().toString().padStart(2, "0");
+            const opcoes = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            const dataFormatada = agora.toLocaleDateString("pt-BR", opcoes);
+
+            document.getElementById("hora").innerHTML = `Agora são ${hora}:${minutos}`;
+            document.getElementById("data").innerHTML = dataFormatada;
         }
-        
     </script>
-
-    
 </body>
 </html>
