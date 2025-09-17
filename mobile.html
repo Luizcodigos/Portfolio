@@ -25,6 +25,7 @@
   <h1 id="titulo">bem vindo(a)!</h1>
   <p id="hora"></p>
   <p id="data"></p>
+  <p id="frase"></p>
 
   <script>
     function atualizarPagina() {
@@ -38,19 +39,41 @@
       if (hora >= 6 && hora < 12) {
         cor = "#ffd700"; // amarelo claro
         mensagem = "Bom dia!";
+        frases = [
+            "Acorde com determinação!",
+            "Cada manhã é uma nova oportunidade."
+        ];
       } else if (hora >= 12 && hora < 18) {
         cor = "#ff8c00"; // laranja escuro
         mensagem = "Boa tarde!";
+        frases =[
+            "A tarde é para recarregar as energias",
+            "Aproveite cada instante do seu dia."
+        ];
       } else if (hora >= 18 && hora < 23) {
         cor = "#00008B"; // azul escuro
         mensagem = "Boa noite!";
+        frases = [
+            "Durma bem , vc merece",
+            "Bom descanso."
+        ];
       } else {
         cor = "#2f4f4f"; // cinza escuro
         mensagem = "Hora de descansar!";
+
       }
 
       document.body.style.backgroundColor = cor;
       document.getElementById("titulo").innerHTML = mensagem;
+
+      let frases  = [];
+      function trocarFrase(){
+        if (frases.lengh>0){
+            const fraseAleatoria = frases[Math.floor(Math.random() * frase.lenght)]
+            document.getElementById("frase").innerHTML = fraseAleatoria;
+        }
+      }
+      
 
     const horaFormatada = hora.toString().padStart(2, "0") + ":" + minutos + ":" + segundos;
      document.getElementById("hora").innerHTML = "Agora são " + horaFormatada;
@@ -71,7 +94,12 @@
 
    
     setInterval(atualizarPagina, 1000);
+
+
+    trocarFrase();
+    setInterval(trocarFrase, 5000);
   </script>
 </body>
 </html>
+
 
