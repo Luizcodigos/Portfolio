@@ -1,78 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mudar de cor de acordo com o Horário</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mudar de cor de acordo com o Horário</title>
+  <style>
+    body {
+      transition: background-color 3s;
+      font-family: Arial, Helvetica, sans-serif;
+      color: black;
+      text-align: center;
+      padding-top: 100px;
+    }
 
-    <style>
-        body {
-            transition: background-color 3s;
-            font-family: Arial, Helvetica, sans-serif;
-            color: black;
-            text-align: center;
-            padding-top: 100px;
-        }
-        button {
-            padding: 20px;
-            font-family: Arial, Helvetica, sans-serif;
-            margin-top: 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 10px;
-        }
-        @media (max-width: 800px) {
-            body { font-size: 40px; padding-top: 50px; }
-            button { font-size: 20px; padding: 20px; }
-        }
-    </style>
+    @media (max-width: 800px) {
+      body {
+        font-size: 40px;
+        padding-top: 50px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1 id="titulo">bem vindo(a)!</h1>
-    <p>Clique no botão para mudar a cor da página de acordo com o horário!</p>
-    <button onclick="trocar()">Mudar cor</button>
+  <h1 id="titulo">bem vindo(a)!</h1>
+  <p id="hora"></p>
+  <p id="data"></p>
 
-    <!-- Adicionados os elementos para mostrar hora e data -->
-    <p id="hora"></p>
-    <p id="data"></p>
+  <script>
+    function atualizarPagina() {
+      const agora = new Date();
+      const hora = agora.getHours().toString().padStart(2, "0");
+      const minutos = agora.getMinutes().toString().padStart(2, "0");
+      const segundos = agora.getSeconds().toString().padStart(2, "0");
 
-    <script>
-        function trocar() {
-            const agora = new Date();
-            const hora = agora.getHours();
-            let cor;
-            let mensagem;
+      let cor, mensagem;
 
-            if (hora >= 6 && hora < 12) {
-                cor = "#ffd700";
-                mensagem = "Bom dia!";
-            } else if (hora >= 12 && hora < 18) {
-                cor = "#ff8c00";
-                mensagem = "Boa tarde!";
-            } else if (hora >= 18 && hora < 23) {
-                cor = "#1e900f";
-                mensagem = "Boa noite!";
-            } else {
-                cor = "#2f4f4f";
-                mensagem = "Hora de descansar!";
-            }
+      if (hora >= 6 && hora < 12) {
+        cor = "#ffd700"; // amarelo claro
+        mensagem = "Bom dia!";
+      } else if (hora >= 12 && hora < 18) {
+        cor = "#ff8c00"; // laranja escuro
+        mensagem = "Boa tarde!";
+      } else if (hora >= 18 && hora < 23) {
+        cor = "#00008B"; // azul escuro
+        mensagem = "Boa noite!";
+      } else {
+        cor = "#2f4f4f"; // cinza escuro
+        mensagem = "Hora de descansar!";
+      }
 
-            document.body.style.backgroundColor = cor;
-            document.getElementById("titulo").innerHTML = mensagem;
+      document.body.style.backgroundColor = cor;
+      document.getElementById("titulo").innerHTML = mensagem;
 
-            // Parte adicionada da imagem
-            const minutos = agora.getMinutes().toString().padStart(2, "0");
-            const opcoes = {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            };
-            const dataFormatada = agora.toLocaleDateString("pt-BR", opcoes);
+    const horaFormatada = hora.toString().padStart(2, "0") + ":" + minutos + ":" + segundos;
+     document.getElementById("hora").innerHTML = "Agora são " + horaFormatada;
 
-            document.getElementById("hora").innerHTML = `Agora são ${hora}:${minutos}`;
-            document.getElementById("data").innerHTML = dataFormatada;
-        }
-    </script>
+
+      const opcoes = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      const dataFormatada = agora.toLocaleDateString("pt-BR", opcoes);
+      document.getElementById("data").innerHTML = dataFormatada;
+    }
+
+    
+    atualizarPagina();
+
+   
+    setInterval(atualizarPagina, 1000);
+  </script>
 </body>
 </html>
+
