@@ -22,62 +22,57 @@
   </style>
 </head>
 <body>
-  <h1 id="titulo">bem vindo(a)!</h1>
+  <h1 id="titulo">Bem-vindo(a)!</h1>
   <p id="hora"></p>
   <p id="data"></p>
   <p id="frase"></p>
 
   <script>
+    let frases = []; 
+
     function atualizarPagina() {
       const agora = new Date();
-      const hora = agora.getHours().toString().padStart(2, "0");
+      const hora = agora.getHours();
       const minutos = agora.getMinutes().toString().padStart(2, "0");
       const segundos = agora.getSeconds().toString().padStart(2, "0");
 
       let cor, mensagem;
 
       if (hora >= 6 && hora < 12) {
-        cor = "#ffd700"; // amarelo claro
+        cor = "#ffd700"; 
         mensagem = "Bom dia!";
         frases = [
-            "Acorde com determinação!",
-            "Cada manhã é uma nova oportunidade."
+          "Acorde com determinação!",
+          "Cada manhã é uma nova oportunidade."
         ];
       } else if (hora >= 12 && hora < 18) {
-        cor = "#ff8c00"; // laranja escuro
+        cor = "#ff8c00";
         mensagem = "Boa tarde!";
-        frases =[
-            "A tarde é para recarregar as energias",
-            "Aproveite cada instante do seu dia."
+        frases = [
+          "A tarde é para recarregar as energias",
+          "Aproveite cada instante do seu dia."
         ];
       } else if (hora >= 18 && hora < 23) {
-        cor = "#00008B"; // azul escuro
+        cor = "#00008B"; 
         mensagem = "Boa noite!";
         frases = [
-            "Durma bem , vc merece",
-            "Bom descanso."
+          "Durma bem, você merece.",
+          "Bom descanso."
         ];
       } else {
-        cor = "#2f4f4f"; // cinza escuro
+        cor = "#2f4f4f";
         mensagem = "Hora de descansar!";
-
+        frases = [
+          "Relaxe, amanhã é um novo dia.",
+          "Silêncio e paz para um sono tranquilo."
+        ];
       }
 
       document.body.style.backgroundColor = cor;
       document.getElementById("titulo").innerHTML = mensagem;
 
-      let frases  = [];
-      function trocarFrase(){
-        if (frases.lengh>0){
-            const fraseAleatoria = frases[Math.floor(Math.random() * frase.lenght)]
-            document.getElementById("frase").innerHTML = fraseAleatoria;
-        }
-      }
-      
-
-    const horaFormatada = hora.toString().padStart(2, "0") + ":" + minutos + ":" + segundos;
-     document.getElementById("hora").innerHTML = "Agora são " + horaFormatada;
-
+      const horaFormatada = hora.toString().padStart(2, "0") + ":" + minutos + ":" + segundos;
+      document.getElementById("hora").innerHTML = "Agora são " + horaFormatada;
 
       const opcoes = {
         weekday: "long",
@@ -89,14 +84,21 @@
       document.getElementById("data").innerHTML = dataFormatada;
     }
 
-    
+    function trocarFrase() {
+      if (frases.length > 0) {
+        const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+        document.getElementById("frase").innerHTML = fraseAleatoria;
+      } else {
+        document.getElementById("frase").innerHTML = "";
+      }
+    }
+
+
     atualizarPagina();
-
-   
-    setInterval(atualizarPagina, 1000);
-
-
     trocarFrase();
+
+    
+    setInterval(atualizarPagina, 1000);
     setInterval(trocarFrase, 5000);
   </script>
 </body>
