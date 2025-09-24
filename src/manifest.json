@@ -1,19 +1,25 @@
 {
   "name": "App Horários",
   "short_name": "Horários",
-  "start_url": "index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icone-192.png",
-      "sizes": "192x192",
+      "src": "lua-crescente.png",
+      "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "icone-512.png",
+      "src": "sol.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+
+       {
+      "src": "por-do-sol.png",
       "sizes": "512x512",
       "type": "image/png"
     }
